@@ -820,10 +820,29 @@
   }
 
   /* =====================================================================
+     DISABLE ZOOM — block iOS Safari pinch-zoom (gesture* events) and any
+     multi-touch pinch. Double-tap zoom is handled by touch-action in CSS;
+     the viewport meta covers the installed PWA.
+     ===================================================================== */
+  function disableZoom() {
+    ['gesturestart', 'gesturechange', 'gestureend'].forEach((evt) => {
+      document.addEventListener(evt, (e) => e.preventDefault(), { passive: false });
+    });
+    document.addEventListener(
+      'touchmove',
+      (e) => {
+        if (e.touches && e.touches.length > 1) e.preventDefault();
+      },
+      { passive: false }
+    );
+  }
+
+  /* =====================================================================
      INIT
      ===================================================================== */
   function init() {
     view = $('view');
+    disableZoom();
     view.addEventListener('click', onClick);
     view.addEventListener('input', onInput);
     document.querySelectorAll('.tab').forEach((b) =>

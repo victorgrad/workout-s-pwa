@@ -26,6 +26,8 @@ html,
 body {
   margin: 0;
   height: 100vh;
+  /* disable double-tap-to-zoom across the whole app */
+  touch-action: manipulation;
 }
 
 /* lock the page: no whole-page elastic scroll on iOS */
@@ -53,6 +55,8 @@ body {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  /* allow vertical scroll only — no pinch-zoom inside the scroller */
+  touch-action: pan-y;
 }
 #view::-webkit-scrollbar { width: 0; }
 
