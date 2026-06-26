@@ -1,0 +1,10 @@
+# Editor / IDE
+.idea/
+
+# Claude Code local dev (preview server config, etc.)
+.claude/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
